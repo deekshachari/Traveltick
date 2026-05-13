@@ -1,0 +1,7 @@
+const apiKey = "AIzaSyCbV_LIz4KYluft25JgyqyHVNgYe-13JqE";
+const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`;
+
+fetch(url)
+.then(res => res.json())
+.then(data => console.log(JSON.stringify(data, null, 2)))
+.catch(err => console.error(err));
