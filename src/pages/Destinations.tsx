@@ -4,18 +4,41 @@ import { Search, Filter, Star, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const destinations = [
+  // Adventure
   { id: 1, city: "Leh", country: "Ladakh, India", price: "45,000", rating: "4.9", image: "/images/adventure.png", category: "Adventure" },
-  { id: 2, city: "Ubud", country: "Bali", price: "85,000", rating: "4.8", image: "/images/bali.png", category: "Relaxation" },
-  { id: 3, city: "Udaipur", country: "Rajasthan, India", price: "75,000", rating: "5.0", image: "/images/luxury.png", category: "Luxury" },
-  { id: 4, city: "Munnar", country: "Kerala, India", price: "35,000", rating: "4.8", image: "/images/hero_bg.png", category: "Romantic" },
-  { id: 5, city: "Kyoto", country: "Japan", price: "1,75,000", rating: "4.7", image: "/images/japan.png", category: "Culture" },
-  { id: 6, city: "Rishikesh", country: "Uttarakhand, India", price: "18,000", rating: "4.9", image: "/images/adventure.png", category: "Adventure" },
-  { id: 7, city: "Hampi", country: "Karnataka, India", price: "22,000", rating: "4.8", image: "/images/bali.png", category: "Culture" },
+  { id: 2, city: "Zermatt", country: "Switzerland", price: "2,05,000", rating: "4.9", image: "/images/switzerland.png", category: "Adventure" },
+  { id: 3, city: "Rishikesh", country: "Uttarakhand, India", price: "18,000", rating: "4.9", image: "/images/adventure.png", category: "Adventure" },
+  { id: 4, city: "Gulmarg", country: "Kashmir, India", price: "55,000", rating: "5.0", image: "/images/iceland.png", category: "Adventure" },
+  { id: 5, city: "Queenstown", country: "New Zealand", price: "2,85,000", rating: "5.0", image: "/images/adventure.png", category: "Adventure" },
+  { id: 6, city: "Spiti Valley", country: "Himachal, India", price: "32,000", rating: "4.8", image: "/images/iceland.png", category: "Adventure" },
+
+  // Relaxation
+  { id: 7, city: "Ubud", country: "Bali", price: "85,000", rating: "4.8", image: "/images/bali.png", category: "Relaxation" },
   { id: 8, city: "Andaman", country: "India", price: "65,000", rating: "4.9", image: "/images/relaxation.png", category: "Relaxation" },
-  { id: 9, city: "Positano", country: "Italy", price: "2,40,000", rating: "4.9", image: "/images/italy.png", category: "Romantic" },
-  { id: 10, city: "Zermatt", country: "Switzerland", price: "2,05,000", rating: "4.9", image: "/images/switzerland.png", category: "Adventure" },
-  { id: 11, city: "Pondicherry", country: "India", price: "25,000", rating: "4.7", image: "/images/luxury.png", category: "Culture" },
-  { id: 12, city: "Gulmarg", country: "Kashmir, India", price: "55,000", rating: "5.0", image: "/images/iceland.png", category: "Adventure" },
+  { id: 9, city: "Varkala", country: "Kerala, India", price: "22,000", rating: "4.7", image: "/images/relaxation.png", category: "Relaxation" },
+  { id: 10, city: "Maafushi", country: "Maldives", price: "1,50,000", rating: "5.0", image: "/images/relaxation.png", category: "Relaxation" },
+  { id: 11, city: "Gokarna", country: "Karnataka, India", price: "15,000", rating: "4.6", image: "/images/relaxation.png", category: "Relaxation" },
+  { id: 12, city: "Santorini", country: "Greece", price: "2,15,000", rating: "4.9", image: "/images/italy.png", category: "Relaxation" },
+
+  // Luxury
+  { id: 13, city: "Udaipur", country: "Rajasthan, India", price: "75,000", rating: "5.0", image: "/images/luxury.png", category: "Luxury" },
+  { id: 14, city: "Dubai", country: "UAE", price: "1,25,000", rating: "4.8", image: "/images/luxury.png", category: "Luxury" },
+  { id: 15, city: "Monaco", country: "Europe", price: "4,50,000", rating: "5.0", image: "/images/luxury.png", category: "Luxury" },
+  { id: 16, city: "Jaipur", country: "Rajasthan, India", price: "45,000", rating: "4.8", image: "/images/luxury.png", category: "Luxury" },
+  { id: 17, city: "Singapore", country: "Singapore", price: "95,000", rating: "4.7", image: "/images/luxury.png", category: "Luxury" },
+
+  // Romantic
+  { id: 18, city: "Munnar", country: "Kerala, India", price: "35,000", rating: "4.8", image: "/images/hero_bg.png", category: "Romantic" },
+  { id: 19, city: "Positano", country: "Italy", price: "2,40,000", rating: "4.9", image: "/images/italy.png", category: "Romantic" },
+  { id: 20, city: "Paris", country: "France", price: "2,10,000", rating: "4.8", image: "/images/italy.png", category: "Romantic" },
+  { id: 21, city: "Manali", country: "Himachal, India", price: "28,000", rating: "4.7", image: "/images/iceland.png", category: "Romantic" },
+
+  // Culture
+  { id: 22, city: "Kyoto", country: "Japan", price: "1,75,000", rating: "4.7", image: "/images/japan.png", category: "Culture" },
+  { id: 23, city: "Hampi", country: "Karnataka, India", price: "22,000", rating: "4.8", image: "/images/bali.png", category: "Culture" },
+  { id: 24, city: "Pondicherry", country: "India", price: "25,000", rating: "4.7", image: "/images/luxury.png", category: "Culture" },
+  { id: 25, city: "Varanasi", country: "Uttar Pradesh, India", price: "12,000", rating: "4.9", image: "/images/japan.png", category: "Culture" },
+  { id: 26, city: "Rome", country: "Italy", price: "1,95,000", rating: "4.8", image: "/images/italy.png", category: "Culture" },
 ];
 
 export default function Destinations() {
