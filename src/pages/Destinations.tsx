@@ -14,7 +14,7 @@ const destinations = [
 
   // Relaxation
   { id: 7, city: "Ubud", country: "Bali", price: "85,000", rating: "4.8", image: "/images/bali.png", category: "Relaxation" },
-  { id: 8, city: "Andaman", country: "India", price: "65,000", rating: "4.9", image: "/images/relaxation.png", category: "Relaxation" },
+  { id: 8, city: "Andaman", country: "India", price: "65,000", rating: "4.9", image: "/images/andaman.png", category: "Relaxation" },
   { id: 9, city: "Varkala", country: "Kerala, India", price: "22,000", rating: "4.7", image: "/images/relaxation.png", category: "Relaxation" },
   { id: 10, city: "Maafushi", country: "Maldives", price: "1,50,000", rating: "5.0", image: "/images/relaxation.png", category: "Relaxation" },
   { id: 11, city: "Gokarna", country: "Karnataka, India", price: "15,000", rating: "4.6", image: "/images/relaxation.png", category: "Relaxation" },
