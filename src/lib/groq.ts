@@ -60,7 +60,14 @@ IMPORTANT:
 
 CLIMATE COMPATIBILITY RULES:
 - Analyze if the destination's current weather in ${dates} is suitable for a general traveler.
-- Provide a compatibility score (0-100), status, and helpful message.
+- SCORING: 
+  - 80-100% = "Good Match" (Weather aligns perfectly).
+  - 50-79% = "Moderate Match" (Weather is acceptable/balanced, not alarming).
+  - Below 50% = "Low Match" (Weather is significantly different from preference).
+- MESSAGING:
+  - Good Match: Positive and reinforcing.
+  - Moderate Match: Balanced and informative.
+  - Low Match: Use friendly warning alert.
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
@@ -250,10 +257,14 @@ IMPORTANT:
 
 CLIMATE COMPATIBILITY RULES:
 - CRITICAL: Compare the User's Preferred Climate (${climate}) with the Real Weather in ${destination} during ${dates}.
-- If User prefers "Cold" and destination is "Hot" (e.g. Goa in summer) → Score < 40%, Status: "Low Match".
-- If User prefers "Tropical" and destination is "Cold" (e.g. Manali in winter) → Score < 40%, Status: "Low Match".
-- If weather matches preference perfectly → Score > 90%, Status: "Excellent Match".
-- In "message": Be friendly. If Low Match, say: "⚠ Climate Preference Mismatch. [Destination] typically experiences [Actual Weather] during your dates."
+- SCORING: 
+  - 80-100% = "Good Match" (Weather aligns perfectly).
+  - 50-79% = "Moderate Match" (Weather is acceptable/balanced, not alarming).
+  - Below 50% = "Low Match" (Weather is significantly different from preference).
+- MESSAGING:
+  - Good Match: Positive and reinforcing.
+  - Moderate Match: Balanced and informative (e.g., "The weather is slightly warmer than your ideal, but still pleasant for sightseeing.").
+  - Low Match: Use friendly warning (e.g., "⚠ Climate Preference Mismatch. [Destination] typically experiences [Actual Weather] during your dates.").
 - In "alternatives": If Low Match, suggest 3 real destinations that actually match the User's Preferred Climate (${climate}) during these dates.
 
 QUALITY RULES:

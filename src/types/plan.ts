@@ -59,7 +59,7 @@ export interface StayOption {
 
 export interface ClimateCompatibility {
   score: number;
-  status: 'Excellent Match' | 'Moderate Match' | 'Low Match';
+  status: 'Good Match' | 'Moderate Match' | 'Low Match';
   message: string;
   alternatives: string[];
 }

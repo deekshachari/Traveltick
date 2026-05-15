@@ -13,14 +13,14 @@ export default function ClimateCompatibility({ data }: ClimateCompatibilityProps
   };
 
   const getStatusIcon = (status: string) => {
-    if (status === "Excellent Match") return <CheckCircle2 className="text-green-400" size={20} />;
-    if (status === "Moderate Match") return <CloudSun className="text-orange-400" size={20} />;
+    if (status === "Good Match") return <CheckCircle2 className="text-green-400" size={20} />;
+    if (status === "Moderate Match") return <CheckCircle2 className="text-blue-400" size={20} />;
     return <AlertTriangle className="text-red-400" size={20} />;
   };
 
   const getStatusBg = (status: string) => {
-    if (status === "Excellent Match") return "bg-green-500/10 border-green-500/20";
-    if (status === "Moderate Match") return "bg-orange-500/10 border-orange-500/20";
+    if (status === "Good Match") return "bg-green-500/10 border-green-500/20";
+    if (status === "Moderate Match") return "bg-blue-500/5 border-blue-500/20";
     return "bg-red-500/10 border-red-500/20";
   };
 
