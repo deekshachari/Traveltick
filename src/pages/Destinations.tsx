@@ -4,12 +4,18 @@ import { Search, Filter, Star, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const destinations = [
-  { id: 1, city: "Zermatt", country: "Switzerland", price: "2,05,000", rating: "4.9", image: "/images/switzerland.png", category: "Adventure" },
+  { id: 1, city: "Leh", country: "Ladakh, India", price: "45,000", rating: "4.9", image: "/images/adventure.png", category: "Adventure" },
   { id: 2, city: "Ubud", country: "Bali", price: "85,000", rating: "4.8", image: "/images/bali.png", category: "Relaxation" },
-  { id: 3, city: "Maafushi", country: "Maldives", price: "1,50,000", rating: "5.0", image: "/images/relaxation.png", category: "Luxury" },
-  { id: 4, city: "Positano", country: "Italy", price: "2,40,000", rating: "4.9", image: "/images/italy.png", category: "Romantic" },
+  { id: 3, city: "Udaipur", country: "Rajasthan, India", price: "75,000", rating: "5.0", image: "/images/luxury.png", category: "Luxury" },
+  { id: 4, city: "Munnar", country: "Kerala, India", price: "35,000", rating: "4.8", image: "/images/hero_bg.png", category: "Romantic" },
   { id: 5, city: "Kyoto", country: "Japan", price: "1,75,000", rating: "4.7", image: "/images/japan.png", category: "Culture" },
-  { id: 6, city: "Reykjavik", country: "Iceland", price: "2,60,000", rating: "4.9", image: "/images/iceland.png", category: "Adventure" },
+  { id: 6, city: "Rishikesh", country: "Uttarakhand, India", price: "18,000", rating: "4.9", image: "/images/adventure.png", category: "Adventure" },
+  { id: 7, city: "Hampi", country: "Karnataka, India", price: "22,000", rating: "4.8", image: "/images/bali.png", category: "Culture" },
+  { id: 8, city: "Andaman", country: "India", price: "65,000", rating: "4.9", image: "/images/relaxation.png", category: "Relaxation" },
+  { id: 9, city: "Positano", country: "Italy", price: "2,40,000", rating: "4.9", image: "/images/italy.png", category: "Romantic" },
+  { id: 10, city: "Zermatt", country: "Switzerland", price: "2,05,000", rating: "4.9", image: "/images/switzerland.png", category: "Adventure" },
+  { id: 11, city: "Pondicherry", country: "India", price: "25,000", rating: "4.7", image: "/images/luxury.png", category: "Culture" },
+  { id: 12, city: "Gulmarg", country: "Kashmir, India", price: "55,000", rating: "5.0", image: "/images/iceland.png", category: "Adventure" },
 ];
 
 export default function Destinations() {
