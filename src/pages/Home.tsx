@@ -22,42 +22,6 @@ import { generateTripPlan } from "../lib/groq";
 
 // --- Components ---
 
-const QuickSearch = () => (
-  <motion.div
-    initial={{ y: 50, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ delay: 0.8, duration: 1 }}
-    className="w-full max-w-5xl mx-auto mt-12 glass p-1 rounded-3xl md:rounded-full"
-  >
-    <div className="flex flex-col md:flex-row items-center gap-2 p-2">
-      <div className="flex-1 flex items-center gap-4 px-6 py-3 border-b md:border-b-0 md:border-r border-white/10 w-full">
-        <MapPin className="text-blue-400" size={20} />
-        <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-widest text-white/40">Destination</span>
-          <input type="text" placeholder="Where to?" className="bg-transparent border-none outline-none text-white placeholder:text-white/20 w-full" />
-        </div>
-      </div>
-      <div className="flex-1 flex items-center gap-4 px-6 py-3 border-b md:border-b-0 md:border-r border-white/10 w-full">
-        <Calendar className="text-blue-400" size={20} />
-        <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-widest text-white/40">Date</span>
-          <input type="text" placeholder="Add dates" className="bg-transparent border-none outline-none text-white placeholder:text-white/20 w-full" />
-        </div>
-      </div>
-      <div className="flex-1 flex items-center gap-4 px-6 py-3 border-b md:border-b-0 md:border-r border-white/10 w-full">
-        <Wallet className="text-blue-400" size={20} />
-        <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-widest text-white/40">Budget</span>
-          <input type="text" placeholder="Max budget" className="bg-transparent border-none outline-none text-white placeholder:text-white/20 w-full" />
-        </div>
-      </div>
-      <button className="w-full md:w-auto px-10 py-4 bg-blue-500 hover:bg-blue-600 rounded-full flex items-center justify-center gap-2 transition-all group">
-        <Search size={20} />
-        <span className="md:hidden">Search</span>
-      </button>
-    </div>
-  </motion.div>
-);
 
 const Hero = () => (
   <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -88,8 +52,6 @@ const Hero = () => (
           </Link>
         </div>
       </motion.div>
-
-      <QuickSearch />
     </div>
   </section>
 );

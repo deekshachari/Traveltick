@@ -21,6 +21,7 @@ import TripDetails from "./pages/TripDetails";
 import TravelPlanner from "./pages/TravelPlanner";
 import CustomTravelBuilder from "./pages/CustomTravelBuilder";
 import MoodPlans from "./pages/MoodPlans";
+import About from "./pages/About";
 import Intro from "./components/Intro";
 import { generateTravelResponse, Message } from "./lib/groq";
 
@@ -49,7 +50,7 @@ const Navbar = () => {
           <Link to="/" className={`hover:text-blue-400 transition-colors ${location.pathname === '/' ? 'text-blue-400' : ''}`}>Home</Link>
           <Link to="/destinations" className={`hover:text-blue-400 transition-colors ${location.pathname === '/destinations' ? 'text-blue-400' : ''}`}>Destinations</Link>
           <Link to="/dashboard" className={`hover:text-blue-400 transition-colors ${location.pathname === '/dashboard' ? 'text-blue-400' : ''}`}>Dashboard</Link>
-          <a href="#" className="hover:text-blue-400 transition-colors">About</a>
+          <Link to="/about" className={`hover:text-blue-400 transition-colors ${location.pathname === '/about' ? 'text-blue-400' : ''}`}>About</Link>
           <button className="px-6 py-2 rounded-full border border-blue-400/30 bg-blue-400/10 hover:bg-blue-400/20 transition-all text-blue-400">
             Sign In
           </button>
@@ -81,7 +82,7 @@ const Footer = () => (
           <ul className="space-y-4 text-xs text-white/40 uppercase tracking-widest">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/destinations">Destinations</Link></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><Link to="/about">About Us</Link></li>
           </ul>
         </div>
       </div>
@@ -205,6 +206,7 @@ export default function App() {
               <Route path="/travel-planner" element={<TravelPlanner />} />
               <Route path="/custom-builder" element={<CustomTravelBuilder />} />
               <Route path="/mood/:type" element={<MoodPlans />} />
+              <Route path="/about" element={<About />} />
             </Routes>
             <AIAssistant />
             <Footer />
