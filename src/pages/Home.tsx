@@ -18,12 +18,12 @@ import {
   Quote
 } from "lucide-react";
 import { useState, useEffect, ReactNode, useRef } from "react";
-import { generateTripPlan } from "../lib/gemini";
+import { generateTripPlan } from "../lib/groq";
 
 // --- Components ---
 
 const QuickSearch = () => (
-  <motion.div 
+  <motion.div
     initial={{ y: 50, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ delay: 0.8, duration: 1 }}
@@ -104,7 +104,7 @@ const MoodCard = ({ icon: Icon, label, image, delay }: { icon: any, label: strin
   >
     <img src={image} alt={label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent group-hover:via-black/40 transition-all duration-500" />
-    
+
     <Link to={`/mood/${label.toLowerCase()}`} className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
       <div className="w-16 h-16 rounded-2xl glass-deep flex items-center justify-center mb-4 group-hover:neon-glow-blue transition-all duration-500">
         <Icon size={32} className="text-blue-400" />
@@ -132,7 +132,7 @@ const MoodSection = () => {
           <span className="text-blue-400 text-xs font-bold uppercase tracking-[0.5em] mb-4 block">Tailored for You</span>
           <h2 className="text-5xl md:text-6xl font-display uppercase tracking-widest">Find Your <span className="text-gradient-blue">Mood</span></h2>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {moods.map((mood, i) => (
             <MoodCard key={mood.label} {...mood} delay={i * 0.1} />
@@ -154,7 +154,7 @@ const DestinationCard = ({ city, country, price, rating, image, delay }: any) =>
     <Link to="/trip/1">
       <img src={image} alt={city} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-      
+
       <div className="absolute top-6 right-6 glass px-4 py-2 rounded-full flex items-center gap-2">
         <Star size={14} className="text-yellow-400 fill-yellow-400" />
         <span className="text-xs font-bold">{rating}</span>
@@ -215,7 +215,7 @@ const CustomizationSection = () => {
     setPlan(generated);
     setIsLoading(false);
   };
-  
+
   return (
     <section id="customize" className="section-padding relative overflow-hidden">
       <div className="container mx-auto">
@@ -248,8 +248,8 @@ const CustomizationSection = () => {
                 <>
                   <div className="space-y-4">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Destination (Optional)</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="e.g. Tokyo, Japan"
@@ -258,8 +258,8 @@ const CustomizationSection = () => {
                   </div>
                   <div className="space-y-4">
                     <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Dates (Optional)</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={dates}
                       onChange={(e) => setDates(e.target.value)}
                       placeholder="e.g. Next Summer, Dec 20-30"
@@ -271,7 +271,7 @@ const CustomizationSection = () => {
                       <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Budget (USD)</label>
                       <span className="text-blue-400 font-bold">${budget}</span>
                     </div>
-                    <input 
+                    <input
                       type="range" min="500" max="10000" step="100" value={budget}
                       onChange={(e) => setBudget(parseInt(e.target.value))}
                       className="w-full accent-blue-500 bg-white/10 h-1 rounded-full cursor-pointer"
@@ -284,9 +284,9 @@ const CustomizationSection = () => {
                 </div>
               )}
             </div>
-            
+
             {!plan ? (
-              <button 
+              <button
                 onClick={handleGenerate}
                 disabled={isLoading}
                 className="w-full py-5 rounded-full bg-blue-500 text-white font-bold tracking-widest shadow-[0_10px_30px_rgba(59,130,246,0.3)] hover:bg-blue-600 transition-colors disabled:opacity-70 flex justify-center items-center gap-2 mt-auto"
@@ -299,7 +299,7 @@ const CustomizationSection = () => {
                 ) : "GENERATE MY TRIP PLAN"}
               </button>
             ) : (
-              <button 
+              <button
                 onClick={() => setPlan("")}
                 className="w-full py-4 rounded-full glass hover:bg-white/10 text-white font-bold tracking-widest transition-all mt-auto"
               >
@@ -376,7 +376,7 @@ export default function Home() {
       <CustomizationSection />
       <ExperienceHighlights />
       <Testimonials />
-      
+
       <section className="section-padding relative overflow-hidden h-[600px] flex items-center justify-center">
         <div className="absolute inset-0">
           <img src="/images/hero_bg.png" alt="Final CTA" className="w-full h-full object-cover" />

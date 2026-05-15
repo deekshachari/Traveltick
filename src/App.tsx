@@ -22,7 +22,7 @@ import TravelPlanner from "./pages/TravelPlanner";
 import CustomTravelBuilder from "./pages/CustomTravelBuilder";
 import MoodPlans from "./pages/MoodPlans";
 import Intro from "./components/Intro";
-import { generateTravelResponse, Message } from "./lib/gemini";
+import { generateTravelResponse, Message } from "./lib/groq";
 
 // --- Shared Components ---
 
@@ -44,7 +44,7 @@ const Navbar = () => {
           <Globe className="text-blue-400 group-hover:rotate-12 transition-transform" size={24} />
           <span className="classy-logo text-3xl tracking-tighter">TravelTick</span>
         </Link>
-        
+
         <div className="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] text-white/50">
           <Link to="/" className={`hover:text-blue-400 transition-colors ${location.pathname === '/' ? 'text-blue-400' : ''}`}>Home</Link>
           <Link to="/destinations" className={`hover:text-blue-400 transition-colors ${location.pathname === '/destinations' ? 'text-blue-400' : ''}`}>Destinations</Link>
@@ -107,16 +107,16 @@ const AIAssistant = () => {
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
-    
+
     const userMessage: Message = { role: 'user', text: input };
     const newMessages = [...messages, userMessage];
-    
+
     setMessages(newMessages);
     setInput('');
     setIsLoading(true);
-    
+
     const aiResponseText = await generateTravelResponse(newMessages);
-    
+
     setMessages([...newMessages, { role: 'ai', text: aiResponseText }]);
     setIsLoading(false);
   };
@@ -151,14 +151,14 @@ const AIAssistant = () => {
               <div ref={messagesEndRef} />
             </div>
             <div className="p-4 border-t border-white/10 bg-black/40 flex gap-2">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                placeholder={isLoading ? "AI is thinking..." : "Ask anything..."} 
+                placeholder={isLoading ? "AI is thinking..." : "Ask anything..."}
                 disabled={isLoading}
-                className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs outline-none focus:border-blue-400/50 disabled:opacity-50" 
+                className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs outline-none focus:border-blue-400/50 disabled:opacity-50"
               />
               <button onClick={handleSend} className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center hover:bg-blue-600 transition-colors">
                 <Send size={14} />
@@ -168,7 +168,7 @@ const AIAssistant = () => {
         )}
       </AnimatePresence>
 
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-110 transition-all group"
       >

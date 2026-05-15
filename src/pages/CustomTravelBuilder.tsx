@@ -1,27 +1,79 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { MapPin, Calendar, Wallet, Sparkles, ArrowLeft, Heart, Zap, Smile, Gem, Briefcase, Users as FamilyIcon, Snowflake, Sun, Cloud } from "lucide-react";
+import { MapPin, Calendar, Sparkles, ArrowLeft, Heart, Zap, Smile, Gem, Snowflake, Sun, Cloud, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { generatePersonalizedPlan } from "../lib/gemini";
-import ReactMarkdown from "react-markdown";
+import { generatePersonalizedPlan } from "../lib/groq";
+import { getWeather } from "../services/weather";
+import { PlanData } from "../types/plan";
+
+// Modular Components
+import WeatherSection from "../components/travel/WeatherSection";
+import HiddenGemsSection from "../components/travel/HiddenGemsSection";
+import ItineraryTimeline from "../components/travel/ItineraryTimeline";
+import StayRecommendations from "../components/travel/StayRecommendations";
+import PersonalizedRecommendations from "../components/travel/PersonalizedRecommendations";
+import FoodRecommendations from "../components/travel/FoodRecommendations";
+import TransportOptions from "../components/travel/TransportOptions";
+import BudgetBreakdown from "../components/travel/BudgetBreakdown";
+import TravelTips from "../components/travel/TravelTips";
+import LoadingSkeleton from "../components/travel/LoadingSkeleton";
+import PlanHeader from "../components/travel/PlanHeader";
+import ClimateCompatibility from "../components/travel/ClimateCompatibility";
 
 export default function CustomTravelBuilder() {
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState("");
-  const [budget, setBudget] = useState(5000);
+  const [budget, setBudget] = useState(15000);
   const [mood, setMood] = useState("Adventure");
   const [purpose, setPurpose] = useState("Vacation");
   const [climate, setClimate] = useState("Moderate");
+  const [travelerType, setTravelerType] = useState("Couple");
+  const [interests, setInterests] = useState("Food, Photography");
+  
   const [isLoading, setIsLoading] = useState(false);
-  const [plan, setPlan] = useState("");
+  const [plan, setPlan] = useState<PlanData | null>(null);
+  const [error, setError] = useState("");
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!destination) return;
+
     setIsLoading(true);
-    setPlan("");
-    const generated = await generatePersonalizedPlan(budget, destination, dates, mood, purpose, climate);
-    setPlan(generated);
-    setIsLoading(false);
+    setPlan(null);
+    setError("");
+
+    try {
+      const weatherData = await getWeather(destination);
+      if (!weatherData) {
+        throw new Error("Could not fetch weather data for this destination.");
+      }
+
+      const generated = await generatePersonalizedPlan(
+        budget, 
+        destination, 
+        dates, 
+        mood, 
+        purpose, 
+        climate, 
+        travelerType, 
+        interests,
+        weatherData
+      );
+
+      if (generated.startsWith("Minimum")) {
+        setError(generated);
+      } else {
+        const jsonMatch = generated.match(/\{[\s\S]*\}/);
+        const jsonStr = jsonMatch ? jsonMatch[0] : generated;
+        const parsed = JSON.parse(jsonStr);
+        setPlan(parsed);
+      }
+    } catch (err: any) {
+      console.error("Generation Error:", err);
+      setError(err.message || "Failed to generate a personalized plan. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const moods = [
@@ -31,7 +83,7 @@ export default function CustomTravelBuilder() {
     { id: "Luxury", icon: Gem, label: "Luxury" },
   ];
 
-  const purposes = ["Vacation", "Honeymoon", "Solo", "Family"];
+  const travelerTypes = ["Solo Traveler", "Couple", "Family", "Friends Group"];
   const climates = [
     { id: "Cold", icon: Snowflake },
     { id: "Moderate", icon: Cloud },
@@ -53,19 +105,20 @@ export default function CustomTravelBuilder() {
           <h1 className="text-5xl md:text-7xl font-display uppercase tracking-tighter mb-8 leading-tight">
             Custom <br /> <span className="text-gradient-blue italic">Builder</span>
           </h1>
-          
+
           <form onSubmit={handleGenerate} className="glass-deep p-8 md:p-10 rounded-[2.5rem] border border-white/10 space-y-8 max-h-[1200px] overflow-y-auto custom-scrollbar">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Destination</label>
                 <div className="relative">
                   <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-400" size={18} />
-                  <input 
-                    type="text" 
+                  <input
+                    required
+                    type="text"
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
-                    placeholder="e.g. Iceland"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-sm outline-none focus:border-blue-400/50 transition-colors"
+                    placeholder="e.g. Bali, Indonesia"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-sm outline-none focus:border-blue-400/50 transition-colors text-white"
                   />
                 </div>
               </div>
@@ -74,14 +127,42 @@ export default function CustomTravelBuilder() {
                 <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Travel Dates</label>
                 <div className="relative">
                   <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-400" size={18} />
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={dates}
                     onChange={(e) => setDates(e.target.value)}
-                    placeholder="e.g. Any time 2026"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-sm outline-none focus:border-blue-400/50 transition-colors"
+                    placeholder="e.g. July 2026"
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-sm outline-none focus:border-blue-400/50 transition-colors text-white"
                   />
                 </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block flex items-center gap-2">
+                  <Users size={12} /> Traveler Type
+                </label>
+                <select
+                  value={travelerType}
+                  onChange={(e) => setTravelerType(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-4 text-sm outline-none focus:border-blue-400/50 transition-colors text-white appearance-none"
+                >
+                  {travelerTypes.map(t => <option key={t} value={t} className="bg-black text-white">{t}</option>)}
+                </select>
+              </div>
+
+              <div className="space-y-4">
+                <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block flex items-center gap-2">
+                  <Star size={12} /> Interests
+                </label>
+                <input
+                  type="text"
+                  value={interests}
+                  onChange={(e) => setInterests(e.target.value)}
+                  placeholder="e.g. Coffee, Surfing, Art"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-4 text-sm outline-none focus:border-blue-400/50 transition-colors text-white"
+                />
               </div>
             </div>
 
@@ -96,23 +177,7 @@ export default function CustomTravelBuilder() {
                     className={`p-4 rounded-2xl border transition-all flex flex-col items-center gap-2 group ${mood === m.id ? 'bg-blue-500 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)]' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
                   >
                     <m.icon size={20} className={mood === m.id ? 'text-white' : 'text-blue-400 group-hover:scale-110 transition-transform'} />
-                    <span className="text-[10px] font-bold uppercase tracking-widest">{m.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Purpose of Travel</label>
-              <div className="grid grid-cols-2 gap-4">
-                {purposes.map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => setPurpose(p)}
-                    className={`py-3 rounded-xl border transition-all text-[10px] font-bold uppercase tracking-widest ${purpose === p ? 'bg-white text-black border-white' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
-                  >
-                    {p}
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-white">{m.label}</span>
                   </button>
                 ))}
               </div>
@@ -126,7 +191,7 @@ export default function CustomTravelBuilder() {
                     key={c.id}
                     type="button"
                     onClick={() => setClimate(c.id)}
-                    className={`flex-1 p-4 rounded-2xl border transition-all flex items-center justify-center gap-3 ${climate === c.id ? 'bg-blue-500/20 border-blue-500 text-blue-400' : 'bg-white/5 border-white/10'}`}
+                    className={`flex-1 p-4 rounded-2xl border transition-all flex items-center justify-center gap-3 ${climate === c.id ? 'bg-blue-500/20 border-blue-500 text-blue-400' : 'bg-white/5 border-white/10 text-white'}`}
                   >
                     <c.icon size={18} />
                     <span className="text-[10px] font-bold uppercase tracking-widest">{c.id}</span>
@@ -137,17 +202,17 @@ export default function CustomTravelBuilder() {
 
             <div className="space-y-6">
               <div className="flex justify-between items-center">
-                <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Budget (USD)</label>
-                <span className="text-blue-400 font-bold text-xl font-display">${budget}</span>
+                <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Budget (INR)</label>
+                <span className="text-blue-400 font-bold text-xl font-display">₹{budget}</span>
               </div>
-              <input 
-                type="range" min="1000" max="30000" step="500" value={budget}
+              <input
+                type="range" min="1000" max="200000" step="1000" value={budget}
                 onChange={(e) => setBudget(parseInt(e.target.value))}
                 className="w-full accent-blue-500 bg-white/10 h-1.5 rounded-full cursor-pointer"
               />
             </div>
 
-            <button 
+            <button
               type="submit"
               disabled={isLoading}
               className="w-full py-5 rounded-full bg-blue-500 text-white font-bold tracking-widest shadow-[0_10px_40px_rgba(59,130,246,0.3)] hover:bg-blue-600 transition-all disabled:opacity-70 flex justify-center items-center gap-3"
@@ -165,38 +230,63 @@ export default function CustomTravelBuilder() {
               )}
             </button>
           </form>
+          
+          {error && (
+            <div className="mt-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-widest text-center">
+              {error}
+            </div>
+          )}
         </motion.div>
 
         <div className="relative min-h-[800px] sticky top-32">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className={`glass-deep rounded-[3rem] border border-white/10 p-10 h-full overflow-y-auto custom-scrollbar ${!plan && 'flex items-center justify-center text-center'}`}
+            className={`glass-deep rounded-[3rem] border border-white/10 p-8 h-full overflow-y-auto custom-scrollbar ${!plan && 'flex items-center justify-center text-center'}`}
           >
             {isLoading ? (
-              <div className="space-y-8 w-full">
-                <div className="h-16 bg-white/5 rounded-3xl animate-pulse" />
-                <div className="space-y-4">
-                  <div className="h-4 bg-white/5 rounded-full animate-pulse w-full" />
-                  <div className="h-4 bg-white/5 rounded-full animate-pulse w-5/6" />
-                </div>
-                <div className="grid grid-cols-1 gap-6">
-                  <div className="h-64 bg-white/5 rounded-[2rem] animate-pulse" />
-                </div>
-              </div>
+              <LoadingSkeleton />
             ) : plan ? (
-              <div className="prose prose-invert prose-sm max-w-none prose-headings:font-display prose-headings:uppercase prose-headings:tracking-widest prose-headings:text-blue-400">
-                <ReactMarkdown>{plan}</ReactMarkdown>
-                
-                <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-4">
-                  <button className="px-8 py-4 rounded-full bg-blue-500 text-white text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg">
-                    Confirm & Save Plan
+              <div className="space-y-12">
+                <PlanHeader 
+                  title={plan.destinationOverview.title}
+                  vibe={plan.destinationOverview.vibe}
+                  description={plan.destinationOverview.description}
+                />
+
+                <ClimateCompatibility data={plan.climateCompatibility} />
+
+                <WeatherSection 
+                  summary={plan.weatherSummary}
+                  daily={plan.dailyWeather}
+                />
+
+                <HiddenGemsSection gems={plan.hiddenGems} />
+
+                <ItineraryTimeline itinerary={plan.itinerary} />
+
+                <StayRecommendations stays={plan.recommendedStays} />
+
+                <PersonalizedRecommendations recommendations={plan.personalizedRecommendations} />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <FoodRecommendations foods={plan.localFoods} />
+                  <TransportOptions options={plan.transportOptions} />
+                </div>
+
+                <BudgetBreakdown breakdown={plan.budgetBreakdown} />
+
+                <TravelTips tips={plan.travelTips} />
+
+                <div className="pt-8 flex flex-wrap gap-4">
+                  <button className="flex-1 px-8 py-5 rounded-full bg-blue-500 text-white font-bold text-xs uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-[0_15px_40px_rgba(59,130,246,0.4)]">
+                    Save Journey
                   </button>
-                  <button 
+                  <button
                     onClick={() => window.print()}
-                    className="px-8 py-4 rounded-full glass text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
+                    className="px-8 py-5 rounded-full glass text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all border border-white/10"
                   >
-                    Export Itinerary
+                    Export Plan
                   </button>
                 </div>
               </div>
