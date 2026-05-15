@@ -64,9 +64,9 @@ CLIMATE COMPATIBILITY RULES:
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
-- REAL LOCATION VALIDATION: Never generate generic placeholder names like "Sandy Beach", "Local Café", "City Restaurant", or "Famous Market". Every attraction, restaurant, beach, hotel, or hidden gem MUST be REAL, RECOGNIZABLE, GEOGRAPHICALLY ACCURATE, and RELEVANT to the destination city.
-- HIDDEN GEM PROTOCOL: Hidden gems MUST be specific categories: Cafés, Cultural Spots, Viewpoints, Quiet Beaches, Local Experiences, Artistic Locations, or Nature Spots. Strictly avoid generic roads, ordinary transit areas, or transit-based fillers.
-- REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden.
+- HIDDEN GEM PROTOCOL: Hidden gems MUST be lesser-known attractions, cultural spots, artistic locations, scenic viewpoints, local experiences, peaceful cafés, or unique neighborhoods. Strictly exclude generic roads, transit areas, or LUXURY HOTELS from hidden gems.
+- REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden. Prefer geographically accurate locations that feel authentic to locals.
+- REAL LOCATION VALIDATION: Never generate generic placeholder names like "Sandy Beach", "Local Café", "City Restaurant", or "Famous Market". Every recommendation MUST be REAL, RECOGNIZABLE, and RELEVANT to the destination city.
 - ACTION-ORIENTED DESCRIPTIONS: Every activity must be specific and immersive (e.g., "Walk along the Marina promenade and try roasted corn from local vendors ✨").
 - STRICT LOCATION CONSISTENCY: ONLY recommend attractions, temples, cafés, restaurants, and hidden gems that exist inside or near the selected destination (${destination}). Never reuse attractions from previous cities. Double-check city consistency before generating.
 - BUDGET CONSISTENCY: Hotel and restaurant recommendations MUST strictly align with the user's budget (₹${budget}). Avoid luxury stays in low or medium budget plans. Dynamically scale stay and dining recommendations according to budget level.
@@ -258,9 +258,9 @@ CLIMATE COMPATIBILITY RULES:
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
-- REAL LOCATION VALIDATION: Never generate generic placeholder names like "Sandy Beach", "Local Café", "City Restaurant", or "Famous Market". Every attraction, restaurant, beach, hotel, or hidden gem MUST be REAL, RECOGNIZABLE, GEOGRAPHICALLY ACCURATE, and RELEVANT to the destination city.
-- HIDDEN GEM PROTOCOL: Hidden gems MUST be specific categories: Cafés, Cultural Spots, Viewpoints, Quiet Beaches, Local Experiences, Artistic Locations, or Nature Spots. Strictly avoid generic roads, ordinary transit areas, or transit-based fillers.
-- REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden.
+- HIDDEN GEM PROTOCOL: Hidden gems MUST be lesser-known attractions, cultural spots, artistic locations, scenic viewpoints, local experiences, peaceful cafés, or unique neighborhoods. Strictly exclude generic roads, transit areas, or LUXURY HOTELS from hidden gems.
+- REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden. Prefer geographically accurate locations that feel authentic to locals.
+- REAL LOCATION VALIDATION: Never generate generic placeholder names like "Sandy Beach", "Local Café", "City Restaurant", or "Famous Market". Every recommendation MUST be REAL, RECOGNIZABLE, and RELEVANT to the destination city.
 - ACTION-ORIENTED DESCRIPTIONS: Every activity must be specific and immersive (e.g., "Walk along the Marina promenade and try roasted corn from local vendors ✨").
 - STRICT LOCATION CONSISTENCY: ONLY recommend attractions, temples, cafés, restaurants, and hidden gems that exist inside or near the selected destination (${destination}). Never reuse attractions from previous cities. Double-check city consistency before generating.
 - BUDGET CONSISTENCY: Hotel and restaurant recommendations MUST strictly align with the user's budget (₹${budget}). Avoid luxury stays in low or medium budget plans. Dynamically scale stay and dining recommendations according to budget level.
