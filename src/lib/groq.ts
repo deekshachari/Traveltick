@@ -64,6 +64,7 @@ CLIMATE COMPATIBILITY RULES:
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
+- REAL LOCATION VALIDATION: Never generate generic placeholder names like "Sandy Beach", "Local Café", "City Restaurant", or "Famous Market". Every attraction, restaurant, beach, hotel, or hidden gem MUST be REAL, RECOGNIZABLE, GEOGRAPHICALLY ACCURATE, and RELEVANT to the destination city.
 - HIDDEN GEM PROTOCOL: Hidden gems MUST be specific categories: Cafés, Cultural Spots, Viewpoints, Quiet Beaches, Local Experiences, Artistic Locations, or Nature Spots. Strictly avoid generic roads, ordinary transit areas, or transit-based fillers.
 - REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden.
 - ACTION-ORIENTED DESCRIPTIONS: Every activity must be specific and immersive (e.g., "Walk along the Marina promenade and try roasted corn from local vendors ✨").
@@ -257,6 +258,7 @@ CLIMATE COMPATIBILITY RULES:
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
+- REAL LOCATION VALIDATION: Never generate generic placeholder names like "Sandy Beach", "Local Café", "City Restaurant", or "Famous Market". Every attraction, restaurant, beach, hotel, or hidden gem MUST be REAL, RECOGNIZABLE, GEOGRAPHICALLY ACCURATE, and RELEVANT to the destination city.
 - HIDDEN GEM PROTOCOL: Hidden gems MUST be specific categories: Cafés, Cultural Spots, Viewpoints, Quiet Beaches, Local Experiences, Artistic Locations, or Nature Spots. Strictly avoid generic roads, ordinary transit areas, or transit-based fillers.
 - REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden.
 - ACTION-ORIENTED DESCRIPTIONS: Every activity must be specific and immersive (e.g., "Walk along the Marina promenade and try roasted corn from local vendors ✨").
