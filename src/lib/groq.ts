@@ -67,6 +67,7 @@ QUALITY RULES:
 - ANTI-REPETITION: Do NOT repeat the same attraction or specific place across multiple days. A place can appear only once in the main itinerary.
 - THEMATIC DIVERSITY: Every day must feel unique and intentional. Ensure diversity across culture, nature, food, nightlife, relaxation, adventure, photography, and local experiences.
 - QUALITY OVER QUANTITY: Prefer shorter premium itineraries over long repetitive ones. If meaningful activities are limited, generate fewer days with higher quality instead of repetitive filler.
+- BUDGET CONSISTENCY: All recommendations (stays, dining, transport) MUST realistically align with the user's budget (₹${budget}). Avoid luxury stays for low budgets. Scale experience levels dynamically.
 - Do NOT generate filler activities like: "Relax at hotel", "Explore the city", "Try local cuisine", "Visit shopping market".
 - Avoid generic tourist brochure style responses.
 - Prioritize quality over quantity.
@@ -259,6 +260,8 @@ QUALITY RULES:
 - ANTI-REPETITION: Do NOT repeat the same attraction or specific place across multiple days. A place can appear only once in the main itinerary.
 - THEMATIC DIVERSITY: Every day must feel unique and intentional. Ensure diversity across culture, nature, food, nightlife, relaxation, adventure, photography, and local experiences.
 - QUALITY OVER QUANTITY: Prefer shorter premium itineraries over long repetitive ones. If meaningful activities are limited, generate fewer days with higher quality instead of repetitive filler.
+- SMART ALTERNATIVES: Alternative destinations must closely match the User's Preferred Climate (${climate}). Do NOT suggest tropical spots if the user wants "Cold".
+- BUDGET CONSISTENCY: All recommendations (stays, dining, transport) MUST realistically align with the user's budget (₹${budget}). Avoid luxury stays for low budgets. Scale experience levels dynamically.
 - Do NOT generate filler activities like: "Relax at hotel", "Explore the city", "Try local cuisine", "Visit shopping market".
 - Avoid generic tourist brochure style responses.
 - Prioritize quality over quantity.
