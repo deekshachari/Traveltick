@@ -64,17 +64,16 @@ CLIMATE COMPATIBILITY RULES:
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
+- HIDDEN GEM PROTOCOL: Hidden gems MUST be specific categories: Cafés, Cultural Spots, Viewpoints, Quiet Beaches, Local Experiences, Artistic Locations, or Nature Spots. Strictly avoid generic roads, ordinary transit areas, or transit-based fillers.
+- REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden.
+- ACTION-ORIENTED DESCRIPTIONS: Every activity must be specific and immersive (e.g., "Walk along the Marina promenade and try roasted corn from local vendors ✨").
 - STRICT LOCATION CONSISTENCY: ONLY recommend attractions, temples, cafés, restaurants, and hidden gems that exist inside or near the selected destination (${destination}). Never reuse attractions from previous cities. Double-check city consistency before generating.
-- REAL-WORLD GROUNDING: ONLY recommend hotels, restaurants, and attractions that genuinely exist. Avoid hallucinated or mismatched locations. Replace vague terms like "local market", "local café", or "shopping area" with REAL NAMED PLACES.
 - BUDGET CONSISTENCY: Hotel and restaurant recommendations MUST strictly align with the user's budget (₹${budget}). Avoid luxury stays in low or medium budget plans. Dynamically scale stay and dining recommendations according to budget level.
 - ANTI-REPETITION: Do NOT repeat the same attraction or specific place across multiple days. A place can appear only once in the entire itinerary.
-- HIDDEN GEM UNIQUENESS: A hidden gem can only appear once across the entire plan and should NOT repeat as itinerary highlights.
 - NO FILLER ACTIVITIES: Strictly avoid generic activities like: "explore the city", "relax at café", "scenic drive", "visit local market", "try local cuisine", "relax at hotel".
-- IMMERSIVE DESCRIPTIONS: Every activity must feel specific, memorable, and location-aware. Use the ✨ emoji for highlights (e.g., "Marudamalai Temple ✨ Best for sunrise photography").
 - THEMATIC DIVERSITY: Every day must feel unique and intentional. Ensure diversity across culture, nature, food, nightlife, relaxation, adventure, photography, and local experiences.
 - QUALITY OVER QUANTITY: Prefer shorter premium itineraries over long repetitive ones. If meaningful activities are limited, generate fewer days with higher quality instead of repetitive filler.
 - Avoid generic tourist brochure style responses.
-- Prioritize quality over quantity.
 - Luxury activities should NOT appear in low-budget trips.
 - Include aesthetic cafés, local eateries, scenic viewpoints, peaceful spots, cultural experiences, photography spots, rooftop cafés, nature escapes, and authentic local experiences.
 
@@ -258,18 +257,17 @@ CLIMATE COMPATIBILITY RULES:
 
 QUALITY RULES:
 - Recommendations must feel handcrafted by a local travel expert.
+- HIDDEN GEM PROTOCOL: Hidden gems MUST be specific categories: Cafés, Cultural Spots, Viewpoints, Quiet Beaches, Local Experiences, Artistic Locations, or Nature Spots. Strictly avoid generic roads, ordinary transit areas, or transit-based fillers.
+- REAL-WORLD GROUNDING: ONLY recommend VERIFIED and widely recognized restaurants, hotels, and attractions. Fictional or hallucinated places are strictly forbidden.
+- ACTION-ORIENTED DESCRIPTIONS: Every activity must be specific and immersive (e.g., "Walk along the Marina promenade and try roasted corn from local vendors ✨").
 - STRICT LOCATION CONSISTENCY: ONLY recommend attractions, temples, cafés, restaurants, and hidden gems that exist inside or near the selected destination (${destination}). Never reuse attractions from previous cities. Double-check city consistency before generating.
-- REAL-WORLD GROUNDING: ONLY recommend hotels, restaurants, and attractions that genuinely exist. Avoid hallucinated or mismatched locations. Replace vague terms like "local market", "local café", or "shopping area" with REAL NAMED PLACES.
 - BUDGET CONSISTENCY: Hotel and restaurant recommendations MUST strictly align with the user's budget (₹${budget}). Avoid luxury stays in low or medium budget plans. Dynamically scale stay and dining recommendations according to budget level.
 - ANTI-REPETITION: Do NOT repeat the same attraction or specific place across multiple days. A place can appear only once in the entire itinerary.
-- HIDDEN GEM UNIQUENESS: A hidden gem can only appear once across the entire plan and should NOT repeat as itinerary highlights.
 - NO FILLER ACTIVITIES: Strictly avoid generic activities like: "explore the city", "relax at café", "scenic drive", "visit local market", "try local cuisine", "relax at hotel".
-- IMMERSIVE DESCRIPTIONS: Every activity must feel specific, memorable, and location-aware. Use the ✨ emoji for highlights (e.g., "Marudamalai Temple ✨ Best for sunrise photography").
 - THEMATIC DIVERSITY: Every day must feel unique and intentional. Ensure diversity across culture, nature, food, nightlife, relaxation, adventure, photography, and local experiences.
 - QUALITY OVER QUANTITY: Prefer shorter premium itineraries over long repetitive ones. If meaningful activities are limited, generate fewer days with higher quality instead of repetitive filler.
 - SMART ALTERNATIVES: Alternative destinations must closely match the User's Preferred Climate (${climate}). Do NOT suggest tropical spots if the user wants "Cold".
 - Avoid generic tourist brochure style responses.
-- Prioritize quality over quantity.
 - Luxury activities should NOT appear in low-budget trips.
 - Include aesthetic cafés, local eateries, scenic viewpoints, peaceful spots, cultural experiences, photography spots, rooftop cafés, nature escapes, and authentic local experiences.
 
