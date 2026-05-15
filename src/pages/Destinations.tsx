@@ -4,12 +4,12 @@ import { Search, Filter, Star, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const destinations = [
-  { id: 1, city: "Zermatt", country: "Switzerland", price: "2,450", rating: "4.9", image: "/images/switzerland.png", category: "Adventure" },
-  { id: 2, city: "Ubud", country: "Bali", price: "1,200", rating: "4.8", image: "/images/bali.png", category: "Relaxation" },
-  { id: 3, city: "Maafushi", country: "Maldives", price: "3,800", rating: "5.0", image: "/images/relaxation.png", category: "Luxury" },
-  { id: 4, city: "Positano", country: "Italy", price: "2,900", rating: "4.9", image: "/images/italy.png", category: "Romantic" },
-  { id: 5, city: "Kyoto", country: "Japan", price: "2,100", rating: "4.7", image: "/images/japan.png", category: "Culture" },
-  { id: 6, city: "Reykjavik", country: "Iceland", price: "3,200", rating: "4.9", image: "/images/iceland.png", category: "Adventure" },
+  { id: 1, city: "Zermatt", country: "Switzerland", price: "2,05,000", rating: "4.9", image: "/images/switzerland.png", category: "Adventure" },
+  { id: 2, city: "Ubud", country: "Bali", price: "85,000", rating: "4.8", image: "/images/bali.png", category: "Relaxation" },
+  { id: 3, city: "Maafushi", country: "Maldives", price: "1,50,000", rating: "5.0", image: "/images/relaxation.png", category: "Luxury" },
+  { id: 4, city: "Positano", country: "Italy", price: "2,40,000", rating: "4.9", image: "/images/italy.png", category: "Romantic" },
+  { id: 5, city: "Kyoto", country: "Japan", price: "1,75,000", rating: "4.7", image: "/images/japan.png", category: "Culture" },
+  { id: 6, city: "Reykjavik", country: "Iceland", price: "2,60,000", rating: "4.9", image: "/images/iceland.png", category: "Adventure" },
 ];
 
 export default function Destinations() {
@@ -67,7 +67,7 @@ export default function Destinations() {
                   <p className="text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-1">{d.country}</p>
                   <h3 className="text-3xl font-display mb-4">{d.city}</h3>
                   <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold">${d.price}</span>
+                    <span className="text-xl font-bold">₹{d.price}</span>
                     <button className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-blue-500 transition-colors">
                       <ArrowRight size={18} />
                     </button>
