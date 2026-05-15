@@ -23,7 +23,7 @@ import ClimateCompatibility from "../components/travel/ClimateCompatibility";
 export default function CustomTravelBuilder() {
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState("");
-  const [budget, setBudget] = useState(15000);
+  const [budget, setBudget] = useState(50000);
   const [mood, setMood] = useState("Adventure");
   const [purpose, setPurpose] = useState("Vacation");
   const [climate, setClimate] = useState("Moderate");
@@ -201,15 +201,23 @@ export default function CustomTravelBuilder() {
             </div>
 
             <div className="space-y-6">
-              <div className="flex justify-between items-center">
-                <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Budget (INR)</label>
-                <span className="text-blue-400 font-bold text-xl font-display">₹{budget}</span>
+              <div className="flex justify-between items-center mb-4">
+                <label className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">Trip Budget (INR)</label>
+                <span className="text-blue-400 font-bold font-display text-xl">₹{budget.toLocaleString('en-IN')}</span>
               </div>
-              <input
-                type="range" min="1000" max="200000" step="1000" value={budget}
-                onChange={(e) => setBudget(parseInt(e.target.value))}
-                className="w-full accent-blue-500 bg-white/10 h-1.5 rounded-full cursor-pointer"
-              />
+              <div className="relative flex items-center group">
+                <div className="absolute -top-6 left-0 text-[10px] text-white/20 font-bold">₹500</div>
+                <div className="absolute -top-6 right-0 text-[10px] text-white/20 font-bold">₹10,00,000</div>
+                <input
+                  type="range"
+                  min="500"
+                  max="1000000"
+                  step="1000"
+                  value={budget}
+                  onChange={(e) => setBudget(parseInt(e.target.value))}
+                  className="w-full h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer accent-blue-500 hover:bg-white/20 transition-all"
+                />
+              </div>
             </div>
 
             <button

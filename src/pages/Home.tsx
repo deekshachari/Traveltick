@@ -128,7 +128,7 @@ const DestinationCard = ({ city, country, price, rating, image, delay }: any) =>
         <div className="flex items-center justify-between">
           <div>
             <span className="text-white/40 text-[10px] uppercase tracking-widest block">Starting from</span>
-            <span className="text-2xl font-bold text-white">${price}</span>
+            <span className="text-2xl font-bold text-white">₹{price}</span>
           </div>
           <button className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-blue-500 transition-colors group/btn">
             <ArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
@@ -155,16 +155,16 @@ const DestinationsSection = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <DestinationCard city="Zermatt" country="Switzerland" price="2,450" rating="4.9" image="/images/switzerland.png" delay={0.1} />
-        <DestinationCard city="Ubud" country="Bali" price="1,200" rating="4.8" image="/images/bali.png" delay={0.2} />
-        <DestinationCard city="Maafushi" country="Maldives" price="3,800" rating="5.0" image="/images/relaxation.png" delay={0.3} />
+        <DestinationCard city="Zermatt" country="Switzerland" price="2,05,000" rating="4.9" image="/images/switzerland.png" delay={0.1} />
+        <DestinationCard city="Ubud" country="Bali" price="85,000" rating="4.8" image="/images/bali.png" delay={0.2} />
+        <DestinationCard city="Maafushi" country="Maldives" price="1,50,000" rating="5.0" image="/images/relaxation.png" delay={0.3} />
       </div>
     </div>
   </section>
 );
 
 const CustomizationSection = () => {
-  const [budget, setBudget] = useState(5000);
+  const [budget, setBudget] = useState(50000);
   const [location, setLocation] = useState("");
   const [dates, setDates] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -230,11 +230,11 @@ const CustomizationSection = () => {
                   </div>
                   <div className="space-y-4 pt-4">
                     <div className="flex justify-between items-center">
-                      <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Budget (USD)</label>
-                      <span className="text-blue-400 font-bold">${budget}</span>
+                      <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Budget (INR)</label>
+                      <span className="text-blue-400 font-bold">₹{budget.toLocaleString('en-IN')}</span>
                     </div>
                     <input
-                      type="range" min="500" max="10000" step="100" value={budget}
+                      type="range" min="5000" max="500000" step="5000" value={budget}
                       onChange={(e) => setBudget(parseInt(e.target.value))}
                       className="w-full accent-blue-500 bg-white/10 h-1 rounded-full cursor-pointer"
                     />
